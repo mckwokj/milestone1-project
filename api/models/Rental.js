@@ -13,6 +13,40 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
+    title: {
+      type: "string"
+    },
+
+    url: {
+      type: "string"
+    },
+
+    estate: {
+      type: "string"
+    },
+
+    bedrooms: {
+      type: "number"
+    },
+
+    area: {
+      type: "number"
+    },
+
+    tenants: {
+      type: "number"
+    },
+
+    rent: {
+      type: "number"
+    },
+
+    // return string "highloighted" or ""
+    highlight: {
+      type: "string"
+    }
+
+
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

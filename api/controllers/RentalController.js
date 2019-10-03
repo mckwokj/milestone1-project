@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+    // create function
     create: async function (req, res) {
         if (req.method == "GET")
             return res.view('rental/create');
@@ -15,7 +16,35 @@ module.exports = {
 
         await Rental.create(req.body.Rental);
 
-        return res.ok("Successfully created!");
+        return res.view('rental/create', { msg: "Submitted already" }); // If submitted, it will show the message indicating the end process
+    },
+
+    // json function
+    json: async function (req, res) {
+
+        var estate = await Rental.find();
+
+        return res.json(estate);
+    },
+
+    // index: async function(req, res){
+    //     var models = await Rental.find();
+    //     return res.view('rental/index', { persons: models });
+    // }
+
+    admin: async function (req, res) {
+
+        var models = await Rental.find();
+
+        if (req.method == "GET")
+            return res.view('rental/admin', { apartments: models });
+
+    },
+
+    search: async function (req, res) {
+        if (req.method == "GET")
+            return res.view('rental/search');
+
     },
 
 };

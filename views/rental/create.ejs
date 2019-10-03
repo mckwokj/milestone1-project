@@ -1,5 +1,8 @@
 <!--create.ejs-->
+
 <form action="/rental/create" method="POST">
+    <% //var message = msg || ""%>
+    <legend>Property Create Form</legend>
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
@@ -11,7 +14,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Image URL:</label>
-                <input type="text" class="form-control" name="Rental[url]" required>
+                <input type="url" class="form-control" name="Rental[url]" required>
             </div>
         </div>
     </div>
