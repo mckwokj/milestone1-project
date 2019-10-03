@@ -1,0 +1,70 @@
+<!--create.ejs-->
+<form action="/rental/create" method="POST">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Property title:</label>
+                <input type="text" class="form-control" name="Rental[title]" required>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Image URL:</label>
+                <input type="text" class="form-control" name="Rental[url]" required>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Estate:</label>
+                <select class="form-control" name="Rental[estate]" required>
+                    <option value="Festival City">Festival City</option>
+                    <option value="Tin Ma Court">Tin Ma Court</option>
+                    <option value="City One Shatin">City One Shatin</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Bedrooms:</label>
+                <input type="number" class="form-control" name="Rental[bedrooms]" required>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Gross Area:</label>
+                <input type="number" class="form-control" name="Rental[area]" required>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Expected Tenants</label>
+                <input type="number" class="form-control" name="Rental[tenants]" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Rent:</label>
+                <input type="number" class="form-control" name="Rental[rent]" required>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="checkbox" id="highlightCheck" name="Rental[highlight]" value="highlighted">
+                <label class="form-check-label" for="highlightCheck">Highlighted Property</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
