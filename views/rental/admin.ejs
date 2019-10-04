@@ -1,5 +1,14 @@
-<table class="table">
-    <% apartments.forEach( function(apartment) { %>
-        <tr><td><%= apartment.title %></td><td><%= apartment.estate %></td><td>Edit</td></tr>
-    <% }); %>
-</table>
+<% apartments.forEach( function(apartment) { %>
+<form action="/rental/edit/<%= apartment.id%>" , method="GET">
+    <!-- <form action="/rental/edit" , method="GET"> -->
+    <table class="table">
+
+        <tr>
+            <td><%= apartment.id%></td>
+            <td><%= apartment.title %></td>
+            <td><%= apartment.estate %></td>
+            <td><button class="submit btn btn-link">Edit</button></td>
+        </tr>
+        <% }); %>
+    </table>
+</form>
