@@ -1,14 +1,18 @@
-<% apartments.forEach( function(apartment) { %>
-<form action="/rental/edit/<%= apartment.id%>" , method="GET">
-    <!-- <form action="/rental/edit" , method="GET"> -->
-    <table class="table">
+<table class="table">
+    <h3 class="text-success"><%= msg%></h3>
+    <% var i = 1;%>
+    <% apartments.forEach( function(apartment) { %>
+    <tr>
+        <td><%= i%></td>
+        <td><%= apartment.title%></td>
+        <td><%= apartment.estate%></td>
+        <td>
+            <form action="/rental/edit/<%= apartment.id%>" , method="GET">
+                <button class="submit btn btn-link">Edit</button>
+            </form>
+        </td>
+    </tr>
 
-        <tr>
-            <td><%= apartment.id%></td>
-            <td><%= apartment.title %></td>
-            <td><%= apartment.estate %></td>
-            <td><button class="submit btn btn-link">Edit</button></td>
-        </tr>
-        <% }); %>
-    </table>
-</form>
+    <%if (i <= count) i++;%>
+    <% }); %>
+</table>

@@ -19,7 +19,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'pages/homepage' },
+  // '/': { view: 'pages/homepage' },
+
+  '/' : 'RentalController.index',
 
   '/rental/admin': 'RentalController.admin',
 
@@ -29,9 +31,13 @@ module.exports.routes = {
 
   '/rental/json': 'RentalController.json',
 
+  '/rental/paginate': 'RentalController.paginate',
+
   'GET /rental/edit/:id': 'RentalController.edit',
 
   'POST /rental/edit/:id': 'RentalController.edit',
+
+  'POST /rental/delete/:id': 'RentalController.delete',
 
 
   /***************************************************************************

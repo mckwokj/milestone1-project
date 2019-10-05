@@ -1,7 +1,6 @@
 <!--edit.ejs-->
 
 <form action="/rental/edit/<%= apartment.id %>" method="POST">
-    <legend>Property Create Form</legend>
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
@@ -22,10 +21,23 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Estate:</label>
-                <select class="form-control" name="Rental[estate]" value="<%= apartment.estate %>" required> <!--Not Yet Complete-->
-                    <option value="Festival City">Festival City</option>
+                <select class="form-control" name="Rental[estate]" required>
+            
+                    <%if(apartment.estate == "Festival City"){%>
+                    <option value="Festival City" <%="selected"%>>Festival City</option>
                     <option value="Tin Ma Court">Tin Ma Court</option>
                     <option value="City One Shatin">City One Shatin</option>
+
+                    <%}if(apartment.estate == "Tin Ma Court"){%>
+                    <option value="Festival City">Festival City</option>
+                    <option value="Tin Ma Court" <%="selected"%>>Tin Ma Court</option>
+                    <option value="City One Shatin">City One Shatin</option>
+
+                    <%}if(apartment.estate == "City One Shatin"){%>
+                    <option value="Festival City">Festival City</option>
+                    <option value="Tin Ma Court">Tin Ma Court</option>
+                    <option value="City One Shatin" <%="selected"%>>City One Shatin</option>
+                    <%}%>
                 </select>
             </div>
         </div>
@@ -33,7 +45,8 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Bedrooms:</label>
-                <input type="number" class="form-control" name="Rental[bedrooms]" value="<%= apartment.bedrooms %>" required>
+                <input type="number" class="form-control" name="Rental[bedrooms]" value="<%= apartment.bedrooms %>"
+                    required>
             </div>
         </div>
     </div>
@@ -49,7 +62,8 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Expected Tenants</label>
-                <input type="number" class="form-control" name="Rental[tenants]" value="<%= apartment.tenants %>" required>
+                <input type="number" class="form-control" name="Rental[tenants]" value="<%= apartment.tenants %>"
+                    required>
             </div>
         </div>
     </div>
@@ -63,10 +77,15 @@
 
         <div class="col-md-6">
             <div class="form-group">
-                <input type="checkbox" id="highlightCheck" name="Rental[highlight]" value="highlighted">
+                <%var result = (apartment.highlight == "highlighted") ? "checked" : ""%>
+                <input type="checkbox" id="highlightCheck" name="Rental[highlight]" value="highlighted" <%= result%>>
                 <label class="form-check-label" for="highlightCheck">Highlighted Property</label>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
+</form>
+
+<form action="/rental/delete/<%= apartment.id %>" method="POST">
+    <button type="submit" class="btn btn-danger">Delete</button>
 </form>

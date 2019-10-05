@@ -53,9 +53,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" id="search" href="/rental/search" onclick="btnClicked(this)">Search</a>
+          <a class="nav-item nav-link" id="search" href="/rental/paginate">Search</a>
           <!--When clicking create, whole page is updated, and the class name not includes active.-->
-          <a class="nav-item nav-link" id="create" href="/rental/create" onclick="btnClicked(this)">Create</a>
+          <a class="nav-item nav-link" id="create" href="/rental/create">Create</a>
           <a class="nav-item nav-link" href="/rental/admin">Admin</a>
         </div>
       </div>
@@ -141,22 +141,6 @@
   <script src="/dependencies/sails.io.js"></script>
   <!--SCRIPTS END-->
 
-  <script>
-    function btnClicked(elem) {
-
-      elem.className += " active";
-
-      if (elem.innerHTML == "Search") {
-        document.getElementById("create").className = "nav-item nav-link";
-        console.log("Change create");
-      }
-
-      if (elem.innerHTML == "Create") {
-        document.getElementById("search").className = "nav-item nav-link";
-        console.log("Change search");
-      }
-    }
-  </script>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

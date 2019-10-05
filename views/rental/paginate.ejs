@@ -1,0 +1,52 @@
+<!--paginate.ejs-->
+<style>
+</style>
+<table class="table">
+    <div class="row">
+            <!-- <div class="card-group"> -->
+                <% apartments.forEach( function(model) { %>
+                <div class="card col-lg-4">
+                    <div class="card-body">
+                       
+                        <h5 class="card-title"><button class="submit btn btn-link"><%= model.title %></button></h5>
+
+                        <img class="img-fluid rounded " src="<%= model.url%>" />
+
+                        <ul class="list-group">
+                            <li class="list-group-item"><span class="font-weight-bold">Estate:</span> <%=model.estate%>
+                            </li>
+                            <li class="list-group-item"><span class="font-weight-bold">Gross Area:</span>
+                                <%=model.area%>
+                            </li>
+                            <li class="list-group-item"><span class="font-weight-bold">Rent:</span> <%=model.rent%></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <% }); %>
+        <!-- </div> -->
+
+        <% const current = parseInt(req.query.page) || 1; %>
+        <div class="col-lg-4">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="/rental/paginate/?page=<%= Math.max(current-1, 1) %>">Previous</a>
+                </li>
+
+                <% for (i = 1; i <= count; i++) { %>
+                <li class="page-item">
+                    <a class="page-link" href="/rental/paginate/?page=<%= i %>"><%= i %></a>
+                </li>
+                <% } %>
+
+                <li class="page-item">
+                    <a class="page-link" href="/rental/paginate/?page=<%= Math.min(current+1, count) %>">Next</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</table>
+
+<nav aria-label="Page navigation example">
+
+</nav>

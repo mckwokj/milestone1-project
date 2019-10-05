@@ -1,6 +1,42 @@
 <!--index.ejs-->
-<table class="table">
-    <% persons.forEach( function(model) { %>
-        <tr><td><%= model.name %></td><td><%= model.age %></td></tr>
+
+<div class="row">
+    <% apartments.forEach( function(model) { %>
+    <div class="card col-lg-4">
+        <div class="card-body">
+
+            <h5 class="card-title"><button class="btn btn-link" data-toggle="modal"
+                    data-target="#id<%=model.id%>"><%= model.title %></button></h5>
+
+            <img class="img-fluid rounded" src="<%= model.url%>" />
+
+            <ul class="list-group">
+                <li class="list-group-item"><span class="font-weight-bold">Estate:</span> <%=model.estate%>
+                </li>
+                <li class="list-group-item"><span class="font-weight-bold">Gross Area:</span>
+                    <%=model.area%>
+                </li>
+                <li class="list-group-item"><span class="font-weight-bold">Rent:</span> <%=model.rent%></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="id<%=model.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h5 class="modal-title" id="exampleModalLongTitle"><%= model.title%></h5>
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
+
     <% }); %>
-</table>
+</div>
