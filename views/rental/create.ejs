@@ -1,5 +1,10 @@
 <!--create.ejs-->
-<h3 class="text-success"><%= msg%></h3>
+<% if (msg != ""){%>
+<div class="alert alert-success" role="alert">
+    The record is succefully created.
+</div>
+<% }%>
+
 <form action="/rental/create" method="POST">
     <legend>Property Create Form</legend>
     <div class="row">
@@ -70,3 +75,5 @@
         </div>
     </div>
 </form>
+
+    

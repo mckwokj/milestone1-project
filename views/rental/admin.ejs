@@ -1,5 +1,14 @@
 <table class="table">
-    <h3 class="text-success"><%= msg%></h3>
+
+    <% if (msg == "Updated"){%>
+    <div class="alert alert-success" role="alert">
+        The record is succefully updated.
+    </div>
+    <% }else if (msg == "Deleted"){%>
+    <div class="alert alert-success" role="alert">
+        The record is succefully deleted.
+    <%}%>
+
     <% var i = 1;%>
     <% apartments.forEach( function(apartment) { %>
     <tr>

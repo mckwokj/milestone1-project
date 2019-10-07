@@ -1,51 +1,112 @@
 <!--paginate.ejs-->
 <style>
+    img {
+        height: 200px;
+        width: 350px;
+    }
 </style>
-<table class="table">
-    <div class="row">
-            <!-- <div class="card-group"> -->
-                <% apartments.forEach( function(model) { %>
-                <div class="card col-lg-4">
-                    <div class="card-body">
-                       
-                        <h5 class="card-title"><button class="submit btn btn-link"><%= model.title %></button></h5>
 
-                        <img class="img-fluid rounded " src="<%= model.url%>" />
+<div class="row">
+    <% apartments.forEach( function(model) { %>
+    <div class="card col-lg-4">
+        <img class="card-img-top rounded" src="<%= model.url%>" />
 
-                        <ul class="list-group">
-                            <li class="list-group-item"><span class="font-weight-bold">Estate:</span> <%=model.estate%>
-                            </li>
-                            <li class="list-group-item"><span class="font-weight-bold">Gross Area:</span>
-                                <%=model.area%>
-                            </li>
-                            <li class="list-group-item"><span class="font-weight-bold">Rent:</span> <%=model.rent%></li>
-                        </ul>
-                    </div>
-                </div>
+        <div class="card-body">
 
-                <% }); %>
-        <!-- </div> -->
+            <h5 class="card-title"><a href="" class="text-decoration-none" data-toggle="modal"
+                    data-target="#id<%=model.id%>"><%= model.title %></a></h5>
 
-        <% const current = parseInt(req.query.page) || 1; %>
-        <div class="col-lg-4">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="/rental/paginate/?page=<%= Math.max(current-1, 1) %>">Previous</a>
+            <ul class="list-group">
+                <li class="list-group-item"><span class="font-weight-bold">Estate:</span> <%=model.estate%>
                 </li>
-
-                <% for (i = 1; i <= count; i++) { %>
-                <li class="page-item">
-                    <a class="page-link" href="/rental/paginate/?page=<%= i %>"><%= i %></a>
+                <li class="list-group-item"><span class="font-weight-bold">Gross Area:</span>
+                    <%=model.area%> sq feet
                 </li>
-                <% } %>
-
-                <li class="page-item">
-                    <a class="page-link" href="/rental/paginate/?page=<%= Math.min(current+1, count) %>">Next</a>
-                </li>
+                <li class="list-group-item"><span class="font-weight-bold">Rent:</span> $<%=model.rent%></li>
             </ul>
         </div>
     </div>
-</table>
+
+
+    <!--Modal-->
+    <div class="modal fade" id="id<%=model.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="modal-title"><%= model.title%></h4>
+
+                            <div class="row">
+
+                                <div class="col-lg-7">
+                                    <img class="rounded" src="<%= model.url%>" style="height:350px; width:410px;" />
+                                </div>
+
+                                <div class="col-lg-5">
+
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><span class="font-weight-bold">Estate:</span>
+                                            <%=model.estate%>
+                                        </li>
+                                        <li class="list-group-item"><span class="font-weight-bold">Gross
+                                                Area:</span>
+                                            <%=model.area%> sq feet
+                                        </li>
+                                        <li class="list-group-item"><span class="font-weight-bold">Rent:</span>
+                                            $<%=model.rent%>
+                                        </li>
+                                        <li class="list-group-item"><span class="font-weight-bold">Bedrooms:</span>
+                                            <%=model.bedrooms%>
+                                        </li>
+                                        <li class="list-group-item"><span class="font-weight-bold">Expected
+                                                Tenants:</span>
+                                            <%=model.tenants%>
+                                        </li>
+                                        <li class="list-group-item"><span class="font-weight-bold">Created:</span>
+                                            <%=new Date(model.createdAt).toLocaleDateString()%>
+                                        </li>
+                                        <li class="list-group-item"><span class="font-weight-bold">Updated:</span>
+                                            <%=new Date(model.updatedAt).toLocaleDateString()%>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% }); %>
+    <!-- </div> -->
+
+    <% const current = parseInt(req.query.page) || 1; %>
+    <div class="col-lg-4">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="/rental/paginate/?page=<%= Math.max(current-1, 1) %>">Previous</a>
+            </li>
+
+            <% for (i = 1; i <= count; i++) { %>
+            <li class="page-item">
+                <a class="page-link" href="/rental/paginate/?page=<%= i %>"><%= i %></a>
+            </li>
+            <% } %>
+
+            <li class="page-item">
+                <a class="page-link" href="/rental/paginate/?page=<%= Math.min(current+1, count) %>">Next</a>
+            </li>
+        </ul>
+    </div>
+</div>
 
 <nav aria-label="Page navigation example">
 

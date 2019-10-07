@@ -9,14 +9,14 @@ module.exports = {
     // create function
     create: async function (req, res) {
         if (req.method == "GET")
-            return res.view('rental/create', { msg: "" });
+            return res.view('rental/create', { msg: "", path: req.path});
 
         if (!req.body.Rental)
             return res.badRequest("Form-data not received.");
 
         await Rental.create(req.body.Rental);
 
-        return res.view('rental/create', { msg: "Submitted already" }); // If submitted, it will show the message indicating the end process
+        return res.view('rental/create', { msg: "Submitted", path: req.path}); // If submitted, it will show the message indicating the end process
     },
 
     // json function
@@ -28,8 +28,16 @@ module.exports = {
     },
 
     index: async function (req, res) {
-        var models = await Rental.find();
-        return res.view('rental/index', { apartments: models });
+
+        var numOfItemsPerPage = 4;
+
+        var models = await Rental.find({
+            limit: numOfItemsPerPage, 
+            where: { highlight: "highlighted" },
+            sort: 'createdAt DESC'
+        });
+        
+        return res.view('rental/index', { apartments: models, path: req.path});
     },
 
     admin: async function (req, res) {
@@ -39,7 +47,7 @@ module.exports = {
         var numOfApartments = await Rental.count();
 
         if (req.method == "GET") {
-            return res.view('rental/admin', { apartments: models, count: numOfApartments, msg: "" });
+            return res.view('rental/admin', { apartments: models, count: numOfApartments, msg: "", path: req.path});
         }
     },
 
@@ -51,7 +59,7 @@ module.exports = {
 
             if (!model) return res.notFound();
 
-            return res.view('rental/edit', { apartment: model });
+            return res.view('rental/edit', { apartment: model, path: req.path});
 
         } else {
 
@@ -75,7 +83,7 @@ module.exports = {
 
             var numOfApartments = await Rental.count();
 
-            return res.view('rental/admin', { apartments: models, count: numOfApartments, msg: "Record Updated" });
+            return res.view('rental/admin', { apartments: models, count: numOfApartments, msg: "Updated", path: req.path});
 
         }
     },
@@ -92,7 +100,7 @@ module.exports = {
 
         var numOfApartments = await Rental.count();
 
-        return res.view('rental/admin', { apartments: model, count: numOfApartments });
+        return res.view('rental/admin', { apartments: model, count: numOfApartments, msg: "Deleted", path: req.path});
 
     },
 
@@ -108,7 +116,7 @@ module.exports = {
 
         var numOfPage = Math.ceil(await Rental.count() / numOfItemsPerPage);
 
-        return res.view('rental/paginate', { apartments: models, count: numOfPage });
+        return res.view('rental/paginate', { apartments: models, count: numOfPage, path: req.path});
     },
 
 };

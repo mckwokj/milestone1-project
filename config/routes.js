@@ -23,6 +23,8 @@ module.exports.routes = {
 
   '/' : 'RentalController.index',
 
+  // '/': 'RentalController.change',
+
   '/rental/admin': 'RentalController.admin',
 
   '/rental/create': 'RentalController.create',
